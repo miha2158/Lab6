@@ -44,8 +44,19 @@ namespace Lab6
 
         private void ModifyButton_Click(object sender, EventArgs e)
         {
-                string temp = WordsBox.Text.Trim();
-                WordsBox2.Text = temp.Remove(temp.LastIndexOf(" ")).Remove(0, temp.IndexOf(" "));
+            string temp = WordsBox.Text.Trim();
+
+            try
+            {
+                temp = temp.Remove(0, temp.IndexOf(" "));
+                temp = temp.Remove(temp.LastIndexOf(" "));
+            }
+            catch (Exception)
+            {
+                if (temp.LastIndexOf(" ") == -1)
+                    temp = "";
+            }
+            WordsBox2.Text = temp;
         }
 
         private void WordsBox_TextChanged(object sender, EventArgs e)
